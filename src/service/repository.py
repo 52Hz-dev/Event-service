@@ -21,7 +21,11 @@ class Event(BaseModel):
     eventDescription:str
     eventOrganizationID:str
     picture:str
-    
+class EventType(BaseModel):
+    eventTypeID:str
+    eventTypeName:str
+    eventTypeDescription:str
+        
 def getEvents():
     try:
         db = mongo_client["event-service"]
@@ -30,6 +34,15 @@ def getEvents():
         return result
     except Exception as e:
         return {"error": str(e)}
+def getEventsType():
+    try:
+        db = mongo_client["event-service"]
+        collection = db["event-type"]
+        result = list(collection.find({}, {"_id": 0}))
+        return result
+    except Exception as e:
+        return {"error": str(e)}
+
 def getEventbyID(eventid: str):
     try:
         db = mongo_client["event-service"]
@@ -48,13 +61,13 @@ def getEventbyType(event_types: List[str]):
     try:
         db = mongo_client["event-service"]
         collection = db["events"]
-        cursor = collection.find({"eventType": {"$in": event_types}}, {"_id": 0})
+        cursor = collection.find({"eventTypeID": {"$in": event_types}}, {"_id": 0})
         events = list(cursor)
         return events
     except Exception as e:
         return {"error": str(e)}
 
-    
+
 def createEvent(event):
     try:
         db = mongo_client["event-service"]
@@ -64,7 +77,14 @@ def createEvent(event):
     except Exception as e:
         return {"error": str(e)}
 
-        
+def createEventType(eventType):
+    try:
+        db = mongo_client["event-service"]
+        collection = db["events"]
+        collection.insert_one(eventType.dict())
+        return {"status": "success", "message": "Event created successfully"}
+    except Exception as e:
+        return {"error": str(e)}       
 
 def updateEvent(id:str, event:Event):
     try:
