@@ -1,6 +1,5 @@
 import os
 import pymongo
-import pandas as pd
 from bson.json_util import dumps
 
 
