@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from utils.dto import StatusResponseDTO
-from service.controller import router
+from src.utils.dto import StatusResponseDTO
+from src.service.controller import router
 # from utils.dto import StatusResponseDTO
 # from service.controller import router
 import os
