@@ -72,7 +72,7 @@ def createEvent(event):
     try:
         db = mongo_client["event-service"]
         collection = db["events"]
-        collection.insert_one(event.dict())
+        collection.insert_one(event)
         return {"status": "success", "message": "Event created successfully"}
     except Exception as e:
         return {"error": str(e)}

@@ -67,7 +67,7 @@ async def event(data: Event):
     # return {"filenames": file_upload.filename}
     return repository.createEvent(data_to_save)
 
-@router.post("/create-event/")
+@router.post("/create-eventType/")
 async def event(data: EventType):
     if data.eventID=="" or data.eventID is None:
         data.eventID = str(uuid.uuid4())
