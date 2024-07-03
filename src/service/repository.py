@@ -1,14 +1,7 @@
-import datetime
 from typing import List
-from haystack.dataclasses import ChatMessage
-from pathlib import Path
-
-from openai import models
 from pydantic import BaseModel
 from database.mongodb.repository import mongo_client
 
-from bson import json_util
-import json
 
 
 class Event(BaseModel):

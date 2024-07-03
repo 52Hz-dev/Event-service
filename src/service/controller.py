@@ -1,7 +1,7 @@
 from typing import List
 import uuid
-from fastapi import APIRouter, Query, UploadFile
-from . import repository
+from fastapi import APIRouter, Query
+import repository
 from pathlib import Path
 
 router = APIRouter()
